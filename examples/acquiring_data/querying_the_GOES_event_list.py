@@ -52,6 +52,14 @@ new_table = hek_results["event_starttime", "event_peaktime",
                         "event_endtime", "fl_goescls", "ar_noaanum"]
 
 ###################################################################
+# The ``hek_result`` from ``result`` is already sorted by date.
+# To sort it by magnitude, one can do this:
+
+mag_sorted = sorted(hek_results, key=lambda x: ord(x['fl_goescls'][0])*100+float(x['fl_goescls'][1:]))
+for r in mag_sorted:
+  print('type {} on {}'.format(r['fl_goescls'], r['event_starttime']))
+
+###################################################################
 # These results can then be saved to a CSV file, or any other file
 # format that `~astropy.table.Table` supports.
 
