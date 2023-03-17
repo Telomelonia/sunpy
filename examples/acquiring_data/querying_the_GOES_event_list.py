@@ -37,6 +37,14 @@ print(result.show("hpc_bbox", "refs"))
 hek_results = result["hek"]
 
 ###################################################################
+# The ``hek_result`` from ``result`` is already sorted by date.
+# To sort it by magnitude, one can do this:
+
+mag_sorted = sorted(hek_results, key=lambda x: ord(x['fl_goescls'][0])*100+float(x['fl_goescls'][1:]))
+for r in mag_sorted:
+  print('type {} on {}'.format(r['fl_goescls'], r['event_starttime']))
+
+###################################################################
 # We can also print the key-values that correspond to the HEK parameters returned
 # in result[0]. The ``.table`` attribute returns an `~astropy.table.Table`.
 
